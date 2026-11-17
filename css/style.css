@@ -1,0 +1,180 @@
+/* ==================================================================
+   Polices (auto-hébergées, voir fonts/)
+   ================================================================== */
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/fraunces-variable.woff2") format("woff2");
+  font-weight: 100 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/fraunces-variable-italic.woff2") format("woff2");
+  font-weight: 100 900; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Work Sans";
+  src: url("../fonts/work-sans-variable.woff2") format("woff2");
+  font-weight: 100 900; font-style: normal; font-display: swap;
+}
+
+/* ==================================================================
+   Thème : tout se règle ici
+   ================================================================== */
+:root {
+  /* Palette validée */
+  --c-peche:      #FDD0BD;
+  --c-abricot:    #FCD38C;
+  --c-corail:     #F09367;
+  --c-terracotta: #C98271;
+  --c-olive:      #69662C;
+  --c-sauge:      #C2CCA8;
+
+  /* Dérivées */
+  --c-creme:            #FFFAF6;
+  --c-olive-profond:    #3A3818;
+  --c-terracotta-fonce: #9A5A4A;
+
+  /* Rôles : le reste du CSS n'utilise QUE ces variables-là */
+  --fond:           var(--c-creme);
+  --fond-alt-1:     var(--c-peche);
+  --fond-alt-2:     var(--c-sauge);
+  --fond-highlight: var(--c-abricot);
+  --texte:          var(--c-olive-profond);
+  --titre:          var(--c-olive);
+  --primaire:       var(--c-olive);
+  --primaire-texte: #FFFFFF;
+  --accent:         var(--c-corail);
+  --accent-2:       var(--c-terracotta);
+  --lien:           var(--c-olive);
+  --lien-survol:    var(--c-terracotta-fonce);
+  --focus:          var(--c-corail);
+
+  /* Typographie */
+  --font-titre: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-texte: "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --fs-prenoms: clamp(3rem, 11vw, 5.5rem);
+  --fs-h2:      clamp(1.75rem, 5vw, 2.5rem);
+  --fs-h3:      1.25rem;
+  --fs-texte:   1rem;
+  --fs-petit:   0.875rem;
+
+  --lh-titre: 1.15;
+  --lh-texte: 1.6;
+
+  /* Espacements */
+  --esp-1: 0.5rem;
+  --esp-2: 1rem;
+  --esp-3: 1.5rem;
+  --esp-4: 2.5rem;
+  --esp-5: 4rem;
+
+  /* Rayons */
+  --rayon-petit: 0.5rem;
+  --rayon:       1rem;
+  --rayon-pilule: 999px;
+}
+
+/* ==================================================================
+   Base
+   ================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--font-texte);
+  font-size: var(--fs-texte);
+  line-height: var(--lh-texte);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-titre);
+  font-optical-sizing: auto;
+  color: var(--titre);
+  line-height: var(--lh-titre);
+  text-wrap: balance;
+  margin: 0;
+}
+
+p { margin: 0; max-width: 65ch; }
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+[hidden] { display: none !important; }
+
+.surtitre {
+  font-size: var(--fs-petit);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ==================================================================
+   Accueil
+   ================================================================== */
+.accueil {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-3);
+  padding: var(--esp-5) var(--esp-2);
+  text-align: center;
+}
+
+.prenoms {
+  font-size: var(--fs-prenoms);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.prenoms .esperluette {
+  font-style: italic;
+  color: var(--c-terracotta-fonce); /* sur fond crème (voir CLAUDE.md) */
+}
+
+.separateur {
+  width: 4rem;
+  height: 2px;
+  margin: 0;
+  border: 0;
+  background: var(--accent);
+}
+
+.date-mariage {
+  background: var(--fond-highlight);
+  border-radius: var(--rayon-pilule);
+  padding: var(--esp-1) var(--esp-3);
+  font-family: var(--font-titre);
+  font-optical-sizing: auto;
+  font-size: 1.375rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.ville {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.message {
+  margin-top: var(--esp-2);
+  color: var(--texte);
+}
+
+@media (min-width: 768px) {
+  .date-mariage { font-size: 1.625rem; }
+  .ville { font-size: 1.25rem; }
+}

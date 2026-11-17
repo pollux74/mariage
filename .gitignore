@@ -5,6 +5,9 @@ photos-originales/
 # Aperçus de travail (celui-ci charge Google Fonts)
 apercu-polices.html
 
+# Réglages locaux de Claude (prévisualisation)
+.claude/
+
 # Fichiers sources d'images
 *.xcf
 *.psd
