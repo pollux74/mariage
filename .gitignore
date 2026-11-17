@@ -1,0 +1,18 @@
+# Dossiers privés : jamais publiés (le dépôt est public)
+reference/
+photos-originales/
+
+# Aperçus de travail (celui-ci charge Google Fonts)
+apercu-polices.html
+
+# Fichiers sources d'images
+*.xcf
+*.psd
+
+# Fichiers système et temporaires
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.tmp
+.directory
