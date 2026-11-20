@@ -2,6 +2,10 @@
 reference/
 photos-originales/
 
+# Documents de travail : seul le rendu du site est publié
+CLAUDE.md
+README.md
+
 # Aperçus de travail (celui-ci charge Google Fonts)
 apercu-polices.html
 
