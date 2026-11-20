@@ -16,6 +16,11 @@
   src: url("../fonts/work-sans-variable.woff2") format("woff2");
   font-weight: 100 900; font-style: normal; font-display: swap;
 }
+@font-face {
+  font-family: "Alex Brush"; /* calligraphie : prénoms uniquement */
+  src: url("../fonts/alex-brush.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
 
 /* ==================================================================
    Thème : tout se règle ici
@@ -52,6 +57,7 @@
   /* Typographie */
   --font-titre: "Fraunces", Georgia, "Times New Roman", serif;
   --font-texte: "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-prenoms: "Alex Brush", "Fraunces", Georgia, serif;
 
   --fs-prenoms: clamp(3rem, 11vw, 5.5rem);
   --fs-h2:      clamp(1.75rem, 5vw, 2.5rem);
@@ -122,9 +128,22 @@ p { margin: 0; max-width: 65ch; }
 /* ==================================================================
    Accueil
    ================================================================== */
+/* Bandeau photo en haut, puis le texte centré dans l'espace restant */
 .accueil {
   min-height: 100vh;
   min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.bandeau {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.accueil-contenu {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -135,13 +154,14 @@ p { margin: 0; max-width: 65ch; }
 }
 
 .prenoms {
+  font-family: var(--font-prenoms);
   font-size: var(--fs-prenoms);
   font-weight: 400;
-  line-height: 1.05;
+  line-height: 1.2; /* laisse de la place aux boucles de la calligraphie */
 }
 
 .prenoms .esperluette {
-  font-style: italic;
+  font-style: normal; /* déjà calligraphiée : pas de faux italique */
   color: var(--c-terracotta-fonce); /* sur fond crème (voir CLAUDE.md) */
 }
 
@@ -154,9 +174,6 @@ p { margin: 0; max-width: 65ch; }
 }
 
 .date-mariage {
-  background: var(--fond-highlight);
-  border-radius: var(--rayon-pilule);
-  padding: var(--esp-1) var(--esp-3);
   font-family: var(--font-titre);
   font-optical-sizing: auto;
   font-size: 1.375rem;

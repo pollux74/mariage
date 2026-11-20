@@ -9,6 +9,7 @@
 
   <link rel="preload" href="fonts/fraunces-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/work-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/alex-brush.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
 
@@ -18,17 +19,23 @@
 <body>
   <main>
     <section id="accueil" class="accueil" aria-labelledby="prenoms">
-      <p class="surtitre">Nous nous marions</p>
-      <!-- Rempli depuis js/data.js -->
-      <h1 id="prenoms" class="prenoms"></h1>
-      <hr class="separateur">
-      <p class="date-mariage" id="date-mariage" hidden></p>
-      <p class="ville" id="ville" hidden></p>
-      <p class="message" id="message" hidden></p>
+      <img class="bandeau" src="img/accueil-mas-nouveau.webp"
+           width="885" height="225"
+           alt="Vue aérienne du Mas Nouveau, ses toits de tuiles et ses jardins">
 
-      <noscript>
-        <p class="message">Ce site a besoin de JavaScript pour afficher les informations du mariage. Activez-le dans votre navigateur, puis rechargez la page.</p>
-      </noscript>
+      <div class="accueil-contenu">
+        <p class="surtitre">Mariage d’</p>
+        <!-- Rempli depuis js/data.js -->
+        <h1 id="prenoms" class="prenoms"></h1>
+        <hr class="separateur">
+        <p class="date-mariage" id="date-mariage" hidden></p>
+        <p class="ville" id="ville" hidden></p>
+        <p class="message" id="message" hidden></p>
+
+        <noscript>
+          <p class="message">Ce site a besoin de JavaScript pour afficher les informations du mariage. Activez-le dans votre navigateur, puis rechargez la page.</p>
+        </noscript>
+      </div>
     </section>
   </main>
 </body>

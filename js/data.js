@@ -27,6 +27,9 @@ const SITE = {
   // Heure de la cérémonie, au format HH:MM (heure de Paris)
   heureCeremonie: "À COMPLÉTER",
 
+  // Lieu affiché sur l'accueil, avant la ville. Mettre "" pour le retirer.
+  lieuAccueil: "Mas Nouveau",
+
   // Ville affichée sur l'accueil
   ville: "Génolhac",
   codePostal: "30450",

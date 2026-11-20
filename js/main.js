@@ -43,7 +43,8 @@
     h1.append(esp, " ", p2 || "");
 
     afficher("date-mariage", formaterDate(SITE.date));
-    afficher("ville", SITE.ville);
+    // « Mas Nouveau · Génolhac » (seulement les parties renseignées)
+    afficher("ville", [SITE.lieuAccueil, SITE.ville].filter(connu).join(" · "));
     afficher("message", SITE.messageAccueil);
 
     if (connu(SITE.date)) {
