@@ -54,9 +54,14 @@ const SITE = {
 
   dressCode: "À COMPLÉTER",
 
+  // Formulaire de confirmation de venue (Framaforms).
+  // Tant que le lien est "À COMPLÉTER", la section et le bouton
+  // « Répondre à l'invitation » restent cachés.
   rsvp: {
-    urlTally: "À COMPLÉTER",
-    dateLimite: "À COMPLÉTER", // AAAA-MM-JJ
+    // Lien public du formulaire Framaforms (https://framaforms.org/…)
+    urlFormulaire: "https://framaforms.org/confirmer-votre-venue-elsa-et-arthur-1795362740",
+    // Date limite de réponse, au format AAAA-MM-JJ
+    dateLimite: "À COMPLÉTER",
   },
 
   cadeaux: {

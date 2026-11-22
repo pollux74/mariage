@@ -19,24 +19,52 @@
 <body>
   <main>
     <section id="accueil" class="accueil" aria-labelledby="prenoms">
-      <img class="bandeau" src="img/accueil-mas-nouveau.webp"
-           width="885" height="225"
-           alt="Vue aérienne du Mas Nouveau, ses toits de tuiles et ses jardins">
+      <img class="bandeau" src="img/accueil-mas-nouveau-dessin.webp"
+           width="1600" height="406"
+           alt="Dessin du Mas Nouveau vu du ciel, avec ses toits de tuiles, sa terrasse et ses jardins">
 
       <div class="accueil-contenu">
-        <p class="surtitre">Mariage d’</p>
-        <!-- Rempli depuis js/data.js -->
-        <h1 id="prenoms" class="prenoms"></h1>
-        <hr class="separateur">
-        <p class="date-mariage" id="date-mariage" hidden></p>
-        <p class="ville" id="ville" hidden></p>
+        <!-- Encadré en trait fin, des prénoms jusqu'à la ville -->
+        <div class="cadre">
+          <!-- Rempli depuis js/data.js -->
+          <h1 id="prenoms" class="prenoms"></h1>
+          <p class="surtitre">se marient</p>
+          <hr class="separateur">
+          <p class="date-mariage" id="date-mariage" hidden></p>
+          <p class="ville" id="ville" hidden></p>
+        </div>
         <p class="message" id="message" hidden></p>
+        <a class="bouton" id="bouton-rsvp" href="#rsvp" hidden>Répondre à l’invitation</a>
 
         <noscript>
           <p class="message">Ce site a besoin de JavaScript pour afficher les informations du mariage. Activez-le dans votre navigateur, puis rechargez la page.</p>
         </noscript>
       </div>
     </section>
+
+    <!-- Confirmation de venue : affichée dès que rsvp.urlFormulaire est renseigné dans js/data.js -->
+    <section id="rsvp" class="section section-rsvp" aria-labelledby="titre-rsvp" hidden>
+      <div class="conteneur">
+        <p class="surtitre">Votre réponse</p>
+        <h2 id="titre-rsvp">Confirmer votre venue</h2>
+        <p class="date-limite" id="date-limite" hidden></p>
+
+        <div class="rsvp-cadre" id="rsvp-cadre"></div>
+
+        <p class="rsvp-secours">
+          <a id="rsvp-lien" href="#" target="_blank" rel="noopener">Ouvrir le formulaire dans une nouvelle page</a>
+        </p>
+      </div>
+    </section>
   </main>
+
+  <!-- Filtre « ondulation » : au survol d'un bouton, js/main.js fait varier
+       le bruit pour que le bord du remplissage abricot ondule. Invisible. -->
+  <svg class="filtres-svg" aria-hidden="true" focusable="false" width="0" height="0">
+    <filter id="ondulation">
+      <feTurbulence id="ondulation-bruit" type="fractalNoise" baseFrequency="0.005 0.01" numOctaves="1" seed="13" result="bruit"/>
+      <feDisplacementMap id="ondulation-deplacement" in="SourceGraphic" in2="bruit" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
 </body>
 </html>

@@ -22,7 +22,7 @@
    ================================================================== */
 :root {
   /* Palette validée */
-  --c-peche:      #FDD0BD;
+  --c-peche:      #FFDAB9; /* vraie pêche (22/11/2026), remplace #FDD0BD trop rosé */
   --c-abricot:    #FCD38C;
   --c-corail:     #F09367;
   --c-terracotta: #C98271;
@@ -36,7 +36,7 @@
 
   /* Rôles : le reste du CSS n'utilise QUE ces variables-là */
   --fond:           var(--c-creme);
-  --fond-alt-1:     var(--c-peche);
+  --fond-alt-1:     var(--c-peche); /* inutilisée pour l'instant (formulaire passé en abricot le 22/11) */
   --fond-alt-2:     var(--c-sauge);
   --fond-highlight: var(--c-abricot);
   --texte:          var(--c-olive-profond);
@@ -131,10 +131,17 @@ p { margin: 0; max-width: 65ch; }
   flex-direction: column;
 }
 
+/* Le dessin est très panoramique (1600 × 406) : sur téléphone, on lui
+   donne plus de hauteur et on recadre les côtés en gardant le mas au centre */
 .bandeau {
   display: block;
   width: 100%;
   height: auto;
+  min-height: 35vh;
+  min-height: 35svh;
+  object-fit: cover;
+  object-position: 55% 50%;
+  mix-blend-mode: multiply; /* le fond crème du dessin prend la couleur de la page */
 }
 
 .accueil-contenu {
@@ -146,6 +153,20 @@ p { margin: 0; max-width: 65ch; }
   gap: var(--esp-3);
   padding: var(--esp-5) var(--esp-2);
   text-align: center;
+}
+
+/* Double trait fin terracotta : bordure + second trait intérieur (outline décalé vers l'intérieur) */
+.cadre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--esp-3);
+  width: 100%;
+  max-width: 36rem;
+  padding: var(--esp-4) var(--esp-3);
+  border: 1px solid var(--accent-2);
+  outline: 1px solid var(--accent-2);
+  outline-offset: -7px;
 }
 
 .prenoms {
@@ -189,4 +210,127 @@ p { margin: 0; max-width: 65ch; }
 @media (min-width: 768px) {
   .date-mariage { font-size: 1.625rem; }
   .ville { font-size: 1.25rem; }
+}
+
+/* ==================================================================
+   Boutons
+   ================================================================== */
+/* Style « pilule à contour » : trait sombre, fond transparent, capitales
+   très espacées. Au survol ou au focus, le bouton se remplit d'abricot
+   par le bas, comme une lumière chaude ; le bord du remplissage ondule
+   doucement (filtre SVG #ondulation animé par main.js). */
+.filtres-svg { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.bouton {
+  position: relative;
+  isolation: isolate;   /* garde le remplissage derrière le texte */
+  overflow: hidden;     /* coupe le remplissage à la forme de la pilule */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0.85rem 2.75rem;
+  border: 2.5px solid var(--texte);
+  border-radius: var(--rayon-pilule);
+  background: transparent;
+  color: var(--texte);
+  font-family: var(--font-texte);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* Remplissage abricot : caché sous le bouton, il monte au survol.
+   Il déborde un peu pour que l'ondulation ne laisse jamais voir de bord. */
+.bouton::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  z-index: -1;
+  background: var(--fond-highlight);
+  filter: url(#ondulation);
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bouton:hover::before,
+.bouton:focus-visible::before { transform: translateY(0); }
+
+/* Petits téléphones : lettres un peu moins espacées pour tenir sur une ligne */
+@media (max-width: 400px) {
+  .bouton {
+    padding-inline: var(--esp-3);
+    letter-spacing: 0.12em;
+  }
+}
+
+.accueil .bouton { margin-top: var(--esp-2); }
+
+/* ==================================================================
+   Sections (communes)
+   ================================================================== */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .bouton::before { transition: none; }
+}
+
+.section {
+  padding: var(--esp-5) var(--esp-2);
+}
+
+.conteneur {
+  max-width: 42rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--esp-2);
+  text-align: center;
+}
+
+.section h2 {
+  font-size: var(--fs-h2);
+  font-weight: 500;
+}
+
+/* ==================================================================
+   Confirmation de venue (RSVP)
+   ================================================================== */
+/* Fond abricot, le même que le remplissage du bouton « Répondre à
+   l'invitation » : texte en olive profond, contour de focus olive profond */
+.section-rsvp { background: var(--fond-highlight); }
+.section-rsvp :focus-visible { outline-color: var(--texte); }
+
+.date-limite {
+  padding: var(--esp-1) var(--esp-3);
+  border-radius: var(--rayon-pilule);
+  background: var(--fond); /* crème : se détache sur la section abricot */
+  font-weight: 500;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.rsvp-cadre {
+  width: 100%;
+  margin-top: var(--esp-2);
+}
+
+.rsvp-cadre iframe {
+  display: block;
+  width: 100%;
+  height: min(80vh, 680px);
+  height: min(80svh, 680px);
+  border: 0;
+  border-radius: var(--rayon);
+  background: var(--fond);
+}
+
+.rsvp-secours { font-size: var(--fs-petit); }
+.rsvp-secours a {
+  display: inline-block;
+  padding: 0.75rem 0; /* cible tactile de 44 px */
+  color: var(--texte);
+  text-underline-offset: 0.2em;
 }
